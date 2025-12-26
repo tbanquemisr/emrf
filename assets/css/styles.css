@@ -59,10 +59,9 @@ body::before {
     position: fixed;
     inset: 0;
     background: var(--background-image) center / cover no-repeat;
-    filter: saturate(1.08) brightness(0.95);
+    filter: brightness(0.95);
     transform: translate3d(0, var(--bg-shift), 0) scale(calc(1 + var(--bg-scale)));
     transition: transform 0.4s ease, filter 0.4s ease;
-    will-change: transform;
     z-index: -3;
 }
 
@@ -73,13 +72,9 @@ body::after {
     background:
         linear-gradient(110deg, rgba(3, 3, 10, 0.88), rgba(6, 6, 14, 0.72)),
         radial-gradient(circle at 15% 18%, rgba(180, 145, 210, 0.26), transparent 55%),
-        radial-gradient(circle at 85% 12%, rgba(244, 211, 176, 0.28), transparent 62%),
-        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.024) 0, rgba(255, 255, 255, 0.024) 1px, transparent 1px, transparent 6px),
-        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.018) 0, rgba(255, 255, 255, 0.018) 1px, transparent 1px, transparent 8px),
-        repeating-radial-gradient(circle at 20% 30%, rgba(255, 255, 255, var(--grain-opacity)) 0, rgba(255, 255, 255, 0) 1px);
+        radial-gradient(circle at 85% 12%, rgba(244, 211, 176, 0.28), transparent 62%);
     mix-blend-mode: screen;
     opacity: 0.68;
-    filter: saturate(1.08) contrast(1.05);
     pointer-events: none;
     z-index: -2;
 }
@@ -231,17 +226,14 @@ ol {
     background: var(--glass-base);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-lg);
-    backdrop-filter: blur(28px) saturate(120%);
+    backdrop-filter: blur(10px) saturate(120%);
     box-shadow:
         var(--shadow-soft),
         0 0 calc(90px * var(--scene-glow)) rgba(190, 158, 126, 0.22);
     overflow: hidden;
     transform-style: preserve-3d;
-    will-change: transform, box-shadow;
     transform:
-        translateZ(calc(var(--scene-depth) * 0.04))
-        rotateX(calc(var(--scene-tilt-x) * 0.12))
-        rotateY(calc(var(--scene-tilt-y) * 0.12));
+        translateZ(calc(var(--scene-depth) * 0.04)) rotateX(calc(var(--scene-tilt-x) * 0.12)) rotateY(calc(var(--scene-tilt-y) * 0.12));
 }
 
 .glass-panel::before {
@@ -265,7 +257,7 @@ ol {
     pointer-events: none;
 }
 
-.glass-panel > * {
+.glass-panel>* {
     position: relative;
     z-index: 1;
 }
@@ -284,7 +276,7 @@ ol {
     display: flex;
     align-items: center;
     background: rgba(10, 10, 18, 0.68);
-    backdrop-filter: blur(24px) saturate(130%);
+    backdrop-filter: blur(12px) saturate(130%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     z-index: 30;
 }
@@ -315,7 +307,7 @@ ol {
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 999px;
     padding: 0.35rem 0.45rem;
-    backdrop-filter: blur(22px);
+    backdrop-filter: blur(10px);
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
@@ -634,14 +626,11 @@ ol {
     border: 1px solid rgba(255, 255, 255, 0.12);
     background: linear-gradient(135deg, rgba(12, 12, 22, 0.85), rgba(32, 24, 55, 0.46));
     border-radius: var(--radius-lg);
-    backdrop-filter: blur(30px) saturate(130%);
+    backdrop-filter: blur(10px) saturate(130%);
     overflow: hidden;
     transform-style: preserve-3d;
-    will-change: transform, box-shadow;
     transform:
-        translateZ(calc(var(--scene-depth) * 0.08))
-        rotateX(var(--scene-tilt-x-soft))
-        rotateY(var(--scene-tilt-y-soft));
+        translateZ(calc(var(--scene-depth) * 0.08)) rotateX(var(--scene-tilt-x-soft)) rotateY(var(--scene-tilt-y-soft));
     box-shadow:
         0 32px 70px rgba(0, 0, 0, 0.42),
         0 0 calc(90px * var(--scene-glow)) rgba(214, 180, 143, 0.26);
@@ -672,7 +661,7 @@ ol {
     opacity: calc(0.32 + var(--scene-glow) * 0.3);
 }
 
-.hero__stage > * {
+.hero__stage>* {
     position: relative;
     z-index: 2;
     transform-style: preserve-3d;
@@ -681,21 +670,16 @@ ol {
 .hero__copy {
     max-width: clamp(420px, 42vw, 560px);
     transform:
-        translateZ(calc(var(--scene-depth) * 0.12))
-        rotateX(calc(var(--scene-tilt-x-soft) * -1))
-        rotateY(var(--scene-tilt-y-soft))
-        translate3d(
-            calc(var(--hero-progress, 0) * -38px),
+        translateZ(calc(var(--scene-depth) * 0.12)) rotateX(calc(var(--scene-tilt-x-soft) * -1)) rotateY(var(--scene-tilt-y-soft)) translate3d(calc(var(--hero-progress, 0) * -38px),
             calc(var(--hero-progress, 0) * -18px),
-            0
-        );
+            0);
     transition: transform 0.25s ease;
     position: relative;
     padding: clamp(18px, 2vw, 28px);
     border-radius: var(--radius-md);
     border: 1px solid rgba(255, 255, 255, 0.12);
     background: linear-gradient(110deg, rgba(18, 18, 30, 0.82) 0%, rgba(18, 18, 30, 0.18) 100%);
-    backdrop-filter: blur(26px);
+    backdrop-filter: blur(8px);
     box-shadow:
         0 22px 48px rgba(0, 0, 0, 0.38),
         0 0 calc(70px * var(--scene-glow)) rgba(246, 207, 167, 0.24);
@@ -726,7 +710,7 @@ ol {
     mix-blend-mode: screen;
 }
 
-.hero__copy > * {
+.hero__copy>* {
     position: relative;
     z-index: 1;
 }
@@ -771,15 +755,9 @@ ol {
     overflow: hidden;
     transform-origin: center 80%;
     transform:
-        translateZ(calc(var(--scene-depth) * 0.3))
-        rotateX(var(--scene-tilt-x-strong))
-        rotateY(calc(var(--scene-tilt-y-strong) * -1))
-        translate3d(
-            calc(var(--hero-progress, 0) * 22px),
+        translateZ(calc(var(--scene-depth) * 0.3)) rotateX(var(--scene-tilt-x-strong)) rotateY(calc(var(--scene-tilt-y-strong) * -1)) translate3d(calc(var(--hero-progress, 0) * 22px),
             calc(var(--hero-progress, 0) * -40px),
-            0
-        )
-        scale(calc(1 + var(--hero-progress, 0) * 0.55));
+            0) scale(calc(1 + var(--hero-progress, 0) * 0.55));
     transform-style: preserve-3d;
     max-width: clamp(360px, 45vw, 620px);
     margin-inline-start: auto;
@@ -824,13 +802,10 @@ ol {
     background: #000;
     transform-origin: center;
     transform:
-        translateZ(calc(60px + var(--scene-depth) * 0.12))
-        scale(calc(1.02 + var(--scene-glow) * 0.08));
+        translateZ(calc(60px + var(--scene-depth) * 0.12)) scale(calc(1.02 + var(--scene-glow) * 0.08));
     filter: saturate(1.04) contrast(1.04);
-    transition: transform 0.35s ease, filter 0.35s ease;
-    will-change: transform;
-    transition: none;
 }
+
 
 .grid {
     display: grid;
@@ -855,16 +830,13 @@ ol {
     border-radius: var(--radius-md);
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: var(--glass-strong);
-    backdrop-filter: blur(26px) saturate(120%);
+    backdrop-filter: blur(8px) saturate(120%);
     box-shadow:
         0 22px 48px rgba(0, 0, 0, 0.36),
         0 0 calc(70px * var(--scene-glow)) rgba(206, 170, 134, 0.2);
     transform-style: preserve-3d;
-    will-change: transform, box-shadow;
     transform:
-        translateZ(calc(var(--scene-depth) * 0.05))
-        rotateX(calc(var(--scene-tilt-x-soft) * 0.4))
-        rotateY(calc(var(--scene-tilt-y-soft) * 0.4));
+        translateZ(calc(var(--scene-depth) * 0.05)) rotateX(calc(var(--scene-tilt-x-soft) * 0.4)) rotateY(calc(var(--scene-tilt-y-soft) * 0.4));
     transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.2s ease, box-shadow 0.35s ease;
 }
 
@@ -873,10 +845,7 @@ ol {
 .service-card:hover,
 .service-card:focus-within {
     transform:
-        translateY(-12px)
-        translateZ(calc(12px + var(--scene-depth) * 0.08))
-        rotateX(calc(var(--scene-tilt-x-soft) * -0.6))
-        rotateY(calc(var(--scene-tilt-y-soft) * 0.6));
+        translateY(-12px) translateZ(calc(12px + var(--scene-depth) * 0.08)) rotateX(calc(var(--scene-tilt-x-soft) * -0.6)) rotateY(calc(var(--scene-tilt-y-soft) * 0.6));
     border-color: rgba(212, 180, 143, 0.5);
     box-shadow:
         0 28px 60px rgba(0, 0, 0, 0.38),
@@ -933,26 +902,20 @@ ol {
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(26, 26, 42, 0.78);
     overflow: hidden;
-    backdrop-filter: blur(22px) saturate(120%);
+    backdrop-filter: blur(6px) saturate(120%);
     box-shadow:
         0 20px 46px rgba(0, 0, 0, 0.34),
         0 0 calc(60px * var(--scene-glow)) rgba(212, 180, 143, 0.2);
     transform-style: preserve-3d;
-    will-change: transform, box-shadow;
     transform:
-        translateZ(calc(var(--scene-depth) * 0.04))
-        rotateX(calc(var(--scene-tilt-x-soft) * 0.35))
-        rotateY(calc(var(--scene-tilt-y-soft) * 0.35));
+        translateZ(calc(var(--scene-depth) * 0.04)) rotateX(calc(var(--scene-tilt-x-soft) * 0.35)) rotateY(calc(var(--scene-tilt-y-soft) * 0.35));
     transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.25s ease, box-shadow 0.35s ease;
 }
 
 .media-card:hover,
 .media-card:focus-within {
     transform:
-        translateY(-10px)
-        translateZ(calc(10px + var(--scene-depth) * 0.08))
-        rotateX(calc(var(--scene-tilt-x-soft) * -0.7))
-        rotateY(calc(var(--scene-tilt-y-soft) * 0.7));
+        translateY(-10px) translateZ(calc(10px + var(--scene-depth) * 0.08)) rotateX(calc(var(--scene-tilt-x-soft) * -0.7)) rotateY(calc(var(--scene-tilt-y-soft) * 0.7));
     border-color: rgba(212, 180, 143, 0.45);
     box-shadow:
         0 26px 58px rgba(0, 0, 0, 0.36),
@@ -1102,11 +1065,11 @@ ol {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-.split--reverse > *:first-child {
+.split--reverse>*:first-child {
     order: 2;
 }
 
-.split--reverse > *:last-child {
+.split--reverse>*:last-child {
     order: 1;
 }
 
@@ -1436,6 +1399,7 @@ ol {
     0% {
         transform: rotate(0deg) scale(1);
     }
+
     100% {
         transform: rotate(8deg) scale(1.05);
     }
@@ -1446,10 +1410,12 @@ ol {
         transform: translateZ(-140px) scale(1.15) rotate(0deg);
         opacity: 0.18;
     }
+
     50% {
         transform: translateZ(-140px) scale(1.3) rotate(12deg);
         opacity: 0.32;
     }
+
     100% {
         transform: translateZ(-140px) scale(1.18) rotate(-8deg);
         opacity: 0.24;
@@ -1460,6 +1426,7 @@ ol {
     0% {
         transform: rotate(0deg) scale(1);
     }
+
     100% {
         transform: rotate(8deg) scale(1.05);
     }
@@ -1486,7 +1453,7 @@ ol {
     border-radius: var(--radius-lg);
     border: 1px solid rgba(255, 255, 255, 0.12);
     background: rgba(22, 22, 34, 0.78);
-    backdrop-filter: blur(28px) saturate(122%);
+    backdrop-filter: blur(8px) saturate(122%);
     box-shadow: var(--shadow-soft);
 }
 
@@ -1753,8 +1720,8 @@ ol {
         grid-template-columns: minmax(0, 1fr);
     }
 
-    .split--reverse > *:first-child,
-    .split--reverse > *:last-child {
+    .split--reverse>*:first-child,
+    .split--reverse>*:last-child {
         order: 0;
     }
 
@@ -1888,9 +1855,42 @@ ol {
     .cursor-lens {
         display: none;
     }
+
+    /* Performance optimizations for touch/mobile devices */
+    .glass-panel,
+    .hero__stage,
+    .hero__copy,
+    .hero__visual,
+    .card,
+    .service-card,
+    .media-card {
+        transform-style: flat;
+        transform: none;
+        backdrop-filter: blur(4px) saturate(100%);
+    }
+
+    .hero__stage::before,
+    .hero__visual::before {
+        animation: none;
+    }
+
+    body::before {
+        transform: none;
+    }
+
+    .card:hover,
+    .card:focus-within,
+    .service-card:hover,
+    .service-card:focus-within,
+    .media-card:hover,
+    .media-card:focus-within {
+        transform: translateY(-4px);
+    }
 }
 
+
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
